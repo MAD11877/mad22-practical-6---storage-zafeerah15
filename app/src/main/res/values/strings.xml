@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">s10205175_week2practical</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_sed_do_euismod_tempor_incididunt_ut_laboore_et_dolore_magna_aliqua">lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do euismod tempor incididunt ut laboore et dolore magna aliqua</string>
+    <string name="green">green</string>
+    <string name="logo">logo</string>
+    <string name="group_1">Group 1</string>
+    <string name="group_2">Group 2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="todo">TODO</string>
+
+
+</resources>
