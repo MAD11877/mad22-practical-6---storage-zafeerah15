@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.os.Bundle;
-
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 public class MessageGroup extends AppCompatActivity {
@@ -33,7 +33,7 @@ public class MessageGroup extends AppCompatActivity {
             }
         });
     }
-    public void repFragments(groupFragment frag){
+    public void repFragments(Fragment frag){
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frame,frag);
         ft.commit();
