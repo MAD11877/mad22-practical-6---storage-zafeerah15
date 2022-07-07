@@ -1,6 +1,8 @@
 package sg.edu.np.edu.mad.s10205175_week2practical;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,11 +56,39 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder>{
             @Override
             public void onClick(View view) {
                 Context context = holder.uPic.getContext();
-                AlertDialog alert = ListActivity.createAlert(holder.getAdapterPosition(), context);
+                Integer uPos = holder.getAdapterPosition();
+                //AlertDialog alert = ListActivity.createAlert(holder.getAdapterPosition(), context);
+
+                DBHandler db = new DBHandler(context);
+                ArrayList<userclass> userList = db.getUsers();
+                //User user = db.getSpecificUser(userList.get(uPos).id);//get the user object
+                userclass user = userList.get(uPos);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Profile");
+                builder.setMessage(user.name);
+                builder.setCancelable(true);
+                builder.setNegativeButton("CLOSE", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //action
+                    }
+                });
+                builder.setPositiveButton("VIEW", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //Random rand = new Random();
+                        //Integer genInt = Math.abs(rand.nextInt());
+                        Intent act = new Intent(context,MainActivity.class);
+                        act.putExtra("userId", user.id);
+                        context.startActivity(act);
+                    }
+                });
+                AlertDialog alert = builder.create();
                 alert.show();
             }
         });
-    }
+    }//end of onBindViewHolder
 
     @Override
     public int getItemCount() {

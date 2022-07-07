@@ -9,7 +9,14 @@ import android.widget.TextView;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class MainActivity extends AppCompatActivity {
+    // Write a message to the database
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("message");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,28 +39,26 @@ public class MainActivity extends AppCompatActivity {
         }
         followstatus(user1, followbutton);
 
+
+
         Toast tTEXT = Toast.makeText(MainActivity.this,ToastText,Toast.LENGTH_SHORT);
         tTEXT.show();
     }
 
             });
 
-        Intent receivingEnd = getIntent();
-        Integer genInt = receivingEnd.getIntExtra("genInt",0);
-        TextView txt = findViewById(R.id.textView2);
-        txt.setText(String.format("MAD %s",genInt));//java string formatting, like python printf
 
-        //event onclick listener for message button
+        //event/onclick listener for message button
         Button messageButton = findViewById(R.id.button3);
-        messageButton.setOnClickListener(new View.OnClickListener(){
-        @Override
-        public void onClick(View view) {
-            Intent NewAct = new Intent(MainActivity.this, MessageGroup.class);
-            startActivity(NewAct);
-        }
-    });
+        messageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent newAct = new Intent(MainActivity.this,MessageGroup.class);
+                startActivity(newAct);
+            }
+        });
 
-    };
+    }
 
     public userclass initial()
     {

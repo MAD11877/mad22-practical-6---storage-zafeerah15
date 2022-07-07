@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.S10205175_week2practical">
         <activity
+            android:name=".LoginPage"
+            android:exported="false" />
+        <activity
             android:name=".MessageGroup"
             android:exported="false" />
         <activity

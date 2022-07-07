@@ -16,4 +16,8 @@ public class userclass implements Serializable {
         id = _id;
         followed = _followed;
     }
+
+    public userclass() {
+
+    }
 }
