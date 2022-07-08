@@ -22,7 +22,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button followbutton = findViewById(R.id.button2);
+        Intent receivingEnd = getIntent();
+        //Integer genInt = receivingEnd.getIntExtra("genInt",0);
+
+        Integer userId = receivingEnd.getIntExtra("userId",-100);
+        DBHandler db = new DBHandler(this);
+        userclass userr = db.getSpecificUser(userId);
+
+
+
+        TextView nameTxt = findViewById(R.id.nameText);
+        TextView descTxt = findViewById(R.id.descText);
+
+        nameTxt.setText(String.format("%s", userr.name));
+        descTxt.setText(String.format("%s", userr.description));
+        Button followbutton = findViewById(R.id.fButton);
         userclass user1 = initial();
         followstatus(user1, followbutton);
         //Button messaging = findViewById(R.id.button3);
@@ -49,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //event/onclick listener for message button
-        Button messageButton = findViewById(R.id.button3);
+        Button messageButton = findViewById(R.id.mButton);
         messageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void followstatus (userclass userclass, Button button2)
         {
-            TextView txt = findViewById(R.id.button2);
+            TextView txt = button2;
             if(userclass.followed == false)
         {
         txt.setText("Follow");
@@ -78,13 +92,6 @@ public class MainActivity extends AppCompatActivity {
         txt.setText("Unfollow");
         }
         };
-    public void message (userclass userclass, Button button3)
-    {
-        TextView txt = findViewById(R.id.button3);
-
-    };
-
-
 
 };
 
